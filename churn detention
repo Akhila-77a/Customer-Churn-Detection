@@ -1,0 +1,6 @@
+SELECT CustomerID, 
+       MAX(OrderDate) AS LastPurchaseDate,
+       DATEDIFF(DAY, MAX(OrderDate), GETDATE()) AS DaysSinceLastPurchase
+FROM SalesOrders
+GROUP BY CustomerID
+HAVING DATEDIFF(DAY, MAX(OrderDate), GETDATE()) > 90;
